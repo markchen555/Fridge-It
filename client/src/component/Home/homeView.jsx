@@ -5,6 +5,8 @@ import { ConnectedRouter } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import {Button, Menu, Container, Image } from 'semantic-ui-react';
 
+import LiveChat from '../Live_Chat/liveChat.jsx'
+
 import Search from '../Search/searchView.jsx';
 import Home from '../Home/home.jsx';
 import * as authActions from '../../actions/authActions.js';
@@ -15,6 +17,7 @@ class HomeView extends Component {
   };
 
   render() {
+    console.log('this is homeView: ', this.props)
     if(localStorage.getItem('userid')) {
       return (
         <div>
@@ -47,6 +50,11 @@ class HomeView extends Component {
                     <Button color={'blue'} content={'Recipe'} size={'huge'}/>
                   </Link>
                 </Menu.Item>
+                <Menu.Item>
+                  <Link to="/live">
+                    <Button color={'blue'} content={'Live'} size={'huge'}/>
+                  </Link>
+                </Menu.Item>
                 <Menu.Item position={'right'} >
                   <Button content={localStorage.getItem('name')} color={'blue'} size={'huge'} />
                   <Button as='a' color={'blue'} content={'Logout'} size={'huge'}
@@ -59,6 +67,7 @@ class HomeView extends Component {
             </Menu>
             <Route exact path="/home" render={() => {return <Home />}}/>
             <Route path="/search" render={() => {return <Search />}}/>
+            <Route path="/live" render={() => {return <LiveChat />}}/>
           </div>
         </Router>
         </div>

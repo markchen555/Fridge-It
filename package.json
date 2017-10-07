@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "nodemon server/server.js",
     "compile": "webpack --watch",
     "build": "webpack -d",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -36,6 +36,7 @@
     "firebase": "^4.4.0",
     "firebase-tools": "^3.13.1",
     "history": "^4.7.2",
+    "http": "0.0.0",
     "morgan": "^1.8.2",
     "pg": "^6.4.2",
     "react": "^15.6.1",
@@ -50,6 +51,7 @@
     "redux-thunk": "^2.2.0",
     "semantic-ui-react": "^0.74.2",
     "sequelize": "^4.10.0",
+    "socket.io": "^2.0.3",
     "style-loader": "^0.18.2",
     "unirest": "^0.5.1",
     "webpack": "^3.6.0"

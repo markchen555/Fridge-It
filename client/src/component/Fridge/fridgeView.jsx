@@ -37,6 +37,7 @@ class Fridge extends Component {
 
 
   render() {
+    console.log('this is fridge: ', this.props)
     let { fridge, fridgeActions, itemActions } = this.props;
     const types = [
       {
