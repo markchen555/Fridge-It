@@ -38,22 +38,68 @@ class liveChat extends Component {
   render() {
     console.log('this is message: ', this.props)
     let allMessages = this.state.messages.map((msg, i) => {
-      return <li key={i}><strong>{msg.user}:</strong><span>{msg.singleMessage}</span></li>
+      if(this.state.user === msg.user) {
+        return (
+          <div className='message-wrap'>
+            <div id="messages" className='message-section right'>
+              <div className='message' key={i}>{msg.singleMessage}</div>
+            </div >
+            <div className='message-section right'>
+              <div className='name'>{msg.user}</div>
+            </div>
+          </div>
+        )
+      } else {
+        return (
+          <div className='message-wrap'>
+            <div id="messages" className='message-section'>
+              <div className='message' key={i}>{msg.singleMessage}</div>
+            </div >
+            <div className='message-section'>
+              <div className='name'>{msg.user}</div>
+            </div>
+          </div>
+        )
+      }
     })
     return (
       <div>
         <style>{`
-          #messages {
-            list-style-type: none; 
-            margin: 0; 
-            padding: 0;
+
+          .thread-container {
+            flex-grow: 1;
+            overflow-y: scroll;
+            position: relative;
           }
-          #messages li { 
-            padding: 5px 10px; 
+          .thread {
+            position: relative;
+            width: 100%;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            color: #b3b2ca;
+            background: #dcddf5;
           }
           .message-section {
-            background-color: lightgrey;
-
+            display: flex;
+          }
+          .message {
+            background: #89a1fc;
+            color: #fff;
+            border-radius: 5px;
+            padding: 10px 15px;
+          }
+          .message-wrap {
+            margin-bottom: 5px;
+          }
+          .name {
+            font-size: .65em;
+            text-align: right;
+          }
+          .right {
+            text-align: right;
+            justify-content: flex-end;
           }
           .form-section {
             background: #2185d0; 
@@ -75,7 +121,11 @@ class liveChat extends Component {
         `}</style>
         <br />
         <h2> {this.state.user}'s Live Chat </h2>
-        <ul id="messages" className='message-section'> {allMessages}</ul>
+        <div className='thread-container'>
+          <div className='thread'>
+           {allMessages}
+          </div>
+        </div>
         <Form className='form-section'>
           <Form.Group action="">
             <Form.Input 
